@@ -117,13 +117,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .q-again{margin-left:18px;font-weight:600;border-bottom:1px solid var(--line)}
 
 /* meal plan offer */
-.offer{margin:0 var(--gut);transform-origin:50% 100%;border-radius:36px;background:var(--sage);color:var(--bone);padding:clamp(50px,10vh,110px) clamp(24px,6vw,90px);display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden;margin-top:clamp(80px,14vh,160px)}
+.offer{margin-left:var(--gut);margin-right:var(--gut);transform-origin:50% 100%;border-radius:36px;background:var(--sage);color:var(--bone);padding:clamp(50px,10vh,110px) clamp(24px,6vw,90px);display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden;margin-top:clamp(80px,14vh,160px)}
 .offer h2{font-size:clamp(2.4rem,5vw,4.6rem)}
 .offer h2 em{color:#BFD6C6}
 .offer p{color:rgba(239,237,231,.78);max-width:40ch;margin:18px 0 28px}
-.plate{justify-self:center;width:min(100%,320px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(239,237,231,.25);display:grid;place-items:center;position:relative}
-.plate::before{content:'';position:absolute;inset:14%;border-radius:50%;border:1px dashed rgba(239,237,231,.25)}
-.plate span{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(3rem,6vw,5rem);color:#BFD6C6}
+.plate{justify-self:center;width:min(100%,360px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;position:relative;background:radial-gradient(circle,rgba(239,237,231,.07) 0 48%,transparent 49%)}
+.plate::before{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid rgba(239,237,231,.22)}
+.plate::after{content:'';position:absolute;inset:25%;border-radius:50%;border:1px solid rgba(239,237,231,.16)}
+.plate .ring{position:absolute;inset:4%;width:92%;height:92%;overflow:visible}
+.plate .ring text{fill:#BFD6C6;font-size:10.5px;letter-spacing:3.2px;font-weight:600}
+.plate span{position:relative;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(2.6rem,4.6vw,4.2rem);line-height:1;color:var(--bone);text-align:center}
 
 /* proof */
 .proof{padding:clamp(100px,18vh,200px) var(--gut);display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-bottom:1px solid var(--line)}
@@ -281,7 +284,11 @@ footer{padding:26px var(--gut) 90px;color:var(--mist);font-size:.85rem;display:f
     <p>Training is half the work. Ask us for a free meal plan built around simple, local food that keeps your energy steady.</p>
     <a class="btn btn-light magnetic" href="https://wa.me/919080114511?text=Hi%2C%20I%27d%20like%20the%20free%20hormone-balancing%20meal%20plan." target="_blank" rel="noopener">Get the free plan</a>
   </div>
-  <div class="plate" aria-hidden="true"><span>eat well</span></div>
+  <div class="plate" aria-hidden="true">
+    <svg class="ring" viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-86,0 a86,86 0 1,1 172,0 a86,86 0 1,1 -172,0"/></defs>
+      <text><textPath href="#circ" textLength="535">SIMPLE &#183; LOCAL &#183; BALANCED &#183; SIMPLE &#183; LOCAL &#183; BALANCED &#183; SIMPLE &#183; LOCAL &#183; BALANCED &#183;</textPath></text></svg>
+    <span>eat<br>well</span>
+  </div>
 </section>
 
 <!-- PROOF: numbers count up -->
@@ -611,7 +618,7 @@ footer{padding:26px var(--gut) 90px;color:var(--mist);font-size:.85rem;display:f
 
   /* ---------- offer: the panel rises and straightens ---------- */
   if (motion) gsap.fromTo('.offer', { scale: 0.88, y: 80, rotationX: 18, transformPerspective: 1200 }, { scale: 1, y: 0, rotationX: 0, ease: 'none', scrollTrigger: { trigger: '.offer', start: 'top bottom', end: 'top 40%', scrub: true } });
-  if (motion) gsap.to('.plate', { rotation: 180, ease: 'none', scrollTrigger: { trigger: '.offer', start: 'top bottom', end: 'bottom top', scrub: true } });
+  if (motion) gsap.to('.plate .ring', { rotation: 160, transformOrigin: '50% 50%', ease: 'none', scrollTrigger: { trigger: '.offer', start: 'top bottom', end: 'bottom top', scrub: true } });
 
   /* ---------- proof counters ---------- */
   if (motion) document.querySelectorAll('[data-count]').forEach(el => {
